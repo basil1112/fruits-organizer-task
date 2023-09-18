@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    overflow: hidden;
+}
+
+#canvas {
+    outline: none;
+}
+
+#gallery {
+    display: flex;
+}
+
+.gallery-item {
+    display: block;
+    border: 1px solid red;
+    padding: 1em 2em;
+    border-radius: 15px;
+    margin-right: 10px;
+}
