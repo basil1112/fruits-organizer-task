@@ -478,7 +478,7 @@ const MainHome: React.FC = () => {
 
         let targetLocations: THREE.Vector3[] = [];
 
-        let canvasWidth = divRef.current!.clientWidth;
+        let canvasWidth = window.innerWidth - 400;
 
         let canvasOrigin = getCanvasOrigin();
         let canvasOriginX = canvasOrigin.canvasOriginX;
@@ -532,8 +532,8 @@ const MainHome: React.FC = () => {
 
         }).catch((error) => {
 
-            setUserRectWidth('0');
-            setUserRectHeight('0')
+            setUserRectWidth('10');
+            setUserRectHeight('10')
             let errorMsg = error.msg ? error.msg : error
             toast.current?.show({ severity: 'error', summary: 'Error', detail: `${errorMsg}`, life: 3000 });
 
