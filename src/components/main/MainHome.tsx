@@ -125,27 +125,29 @@ const MainHome: React.FC = () => {
         if (event.dataTransfer?.getData('text') == "circle") {
 
             let oldHover = hoveredBox as THREE.Mesh;
-            const material = new THREE.MeshBasicMaterial({ color: BASKET_PROPS._basketColor });
-            oldHover.material = material
+            if (oldHover) {
+                const material = new THREE.MeshBasicMaterial({ color: BASKET_PROPS._basketColor });
+                oldHover.material = material
 
-            let tableBorderValue = divRef.current?.getBoundingClientRect();
-            let placingX = event.clientX - tableBorderValue!.x;
-            let placingY = event.clientY - tableBorderValue!.y;
-            let canvasPoints = getCanvasPointsFromMousePoint(x, y);
+                let tableBorderValue = divRef.current?.getBoundingClientRect();
+                let placingX = event.clientX - tableBorderValue!.x;
+                let placingY = event.clientY - tableBorderValue!.y;
+                let canvasPoints = getCanvasPointsFromMousePoint(x, y);
 
-            //normalised coordinates : values between -1 & 1
-            let normX = ((placingX / (window.innerWidth - 400)) * 2) - 1;
-            let normY = (-1 * (placingY / (window.innerHeight - 50)) * 2) + 1;
+                //normalised coordinates : values between -1 & 1
+                let normX = ((placingX / (window.innerWidth - 400)) * 2) - 1;
+                let normY = (-1 * (placingY / (window.innerHeight - 50)) * 2) + 1;
 
-            let rayCaster = new THREE.Raycaster();
-            rayCaster.setFromCamera(new THREE.Vector2(normX, normY), camera!)
+                let rayCaster = new THREE.Raycaster();
+                rayCaster.setFromCamera(new THREE.Vector2(normX, normY), camera!)
 
-            let intersectingData = rayCaster.intersectObjects(sceneObjects);
-            if (intersectingData.length > 0) {
-                let selectedRect = intersectingData[0]
-                _console.log(isProd, "selected rect", selectedRect);
-                let z = selectedRect.object;
-                addCircle(z);
+                let intersectingData = rayCaster.intersectObjects(sceneObjects);
+                if (intersectingData.length > 0) {
+                    let selectedRect = intersectingData[0]
+                    _console.log(isProd, "selected rect", selectedRect);
+                    let z = selectedRect.object;
+                    addCircle(z);
+                }
             }
 
         } else {
