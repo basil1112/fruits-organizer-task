@@ -46,8 +46,6 @@ export const processDimension = (width: number, height: number): Promise<object>
 }
 
 /**
- * 
- * 
  * @param x  input value to check between
  * @param min between min value
  * @param max  between max value 
